@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "60849647234",
+    "project_id": "notelist-mobdev-project",
+    "storage_bucket": "notelist-mobdev-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60849647234:android:55f72d53b3ec50d7544e9b",
+        "android_client_info": {
+          "package_name": "bf.dimdigital.notelist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPMm4qc738eDYXAYasFw4-PvX9mlfYThQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
