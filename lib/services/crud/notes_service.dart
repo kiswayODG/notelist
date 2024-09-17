@@ -8,6 +8,7 @@ import 'package:notelist/extensions/list/filter.dart';
 
 import 'crud_exceptions.dart';
 
+
  class NotesService {
    Database? _db;
 
@@ -74,7 +75,7 @@ import 'crud_exceptions.dart';
      // make sure note exists
      await getNote(id: note.id);
 
-    //  update DB
+     // update DB
      final updatesCount = await db.update(
        noteTable,
        {
@@ -100,6 +101,8 @@ import 'crud_exceptions.dart';
      await _ensureDbIsOpen();
      final db = _getDatabaseOrThrow();
      final notes = await db.query(noteTable);
+
+     print(notes);
 
      return notes.map((noteRow) => DatabaseNote.fromRow(noteRow));
    }
@@ -271,9 +274,9 @@ import 'crud_exceptions.dart';
        final dbPath = join(docsPath.path, dbName);
        final db = await openDatabase(dbPath);
        _db = db;
-        //create the user table
+       // create the user table
        await db.execute(createUserTable);
-        //create note table
+       // create note table
        await db.execute(createNoteTable);
        await _cacheNotes();
      } on MissingPlatformDirectoryException {
@@ -323,7 +326,7 @@ import 'crud_exceptions.dart';
          userId = map[userIdColumn] as int,
          text = map[textColumn] as String,
          isSyncedWithCloud =
-             (map[isSyncedWithCloudColumn] as int) == 1 ? true : false;
+         (map[isSyncedWithCloudColumn] as int) == 1 ? true : false;
 
    @override
    String toString() =>
@@ -345,15 +348,15 @@ import 'crud_exceptions.dart';
  const textColumn = 'text';
  const isSyncedWithCloudColumn = 'is_synced_with_cloud';
  const createUserTable = '''CREATE TABLE IF NOT EXISTS "user" (
-         "id"	INTEGER NOT NULL,
-         "email"	TEXT NOT NULL UNIQUE,
-         PRIMARY KEY("id" AUTOINCREMENT)
-       );''';
+        "id"	INTEGER NOT NULL,
+        "email"	TEXT NOT NULL UNIQUE,
+        PRIMARY KEY("id" AUTOINCREMENT)
+      );''';
  const createNoteTable = '''CREATE TABLE IF NOT EXISTS "note" (
-         "id"	INTEGER NOT NULL,
-         "user_id"	INTEGER NOT NULL,
-         "text"	TEXT,
-         "is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
-         FOREIGN KEY("user_id") REFERENCES "user"("id"),
-         PRIMARY KEY("id" AUTOINCREMENT)
-       );''';
+        "id"	INTEGER NOT NULL,
+        "user_id"	INTEGER NOT NULL,
+        "text"	TEXT,
+        "is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY("user_id") REFERENCES "user"("id"),
+        PRIMARY KEY("id" AUTOINCREMENT)
+      );''';
