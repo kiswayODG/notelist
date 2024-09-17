@@ -2,3 +2,4 @@
  const registerRoute = '/register/';
  const notesRoute = '/notes/';
  const emailVerifyRoute = '/verify-email/';
+ const newNoteRoute="/notes/new-note/";
