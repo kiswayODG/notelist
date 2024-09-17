@@ -29,12 +29,6 @@ class _NoteViewsState extends State<NoteViews> {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    _notesService.close();
-    super.dispose();
-  }
-  @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(title:const Text('Mes notes'),
@@ -82,6 +76,21 @@ class _NoteViewsState extends State<NoteViews> {
                         return const Text("Chargment des notes ...");
                       case ConnectionState.active:
                       // TODO: Handle this case.
+                      if(snapshot.hasData){
+                        final allNotes = snapshot.data as List<DatabaseNote>;
+                        return ListView.builder(
+                            itemBuilder: (context, index){
+                              final note = allNotes[index];
+                              return ListTile(
+                                title: Text(note.text,maxLines: 1,softWrap: true,overflow: TextOverflow.ellipsis,),
+
+                              );
+                            },
+                            itemCount: allNotes.length);
+                      }else {
+                        return CircularProgressIndicator();
+                      }
+
                         return const Text("Chargment des notes ...");
                       default:
                         return const CircularProgressIndicator();
