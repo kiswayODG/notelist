@@ -12,7 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Flutter Demo',
+    title: 'Gestionnaire de notes',
     theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,
@@ -21,7 +21,7 @@ void main() {
     routes: {
       loginRoute:(context)=>const LoginView(),
       registerRoute : (context) => const RegisterView(),
-      notesRoute : (context) => const NoteViews(),
+      notesRoute : (context) => const NotesView(),
       emailVerifyRoute : (context) => VerifyEmailView(),
       newNoteRoute : (context)=> NewNoteView(),
     },
